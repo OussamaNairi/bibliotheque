@@ -38,18 +38,19 @@
        <div class="col-md-3">
 			<div class="row">
 				<div class="list-group">
-					<a href="#" class="list-group-item active">Categorie</a>
-                                    <?php
+                <a href="#" class="list-group-item active"> Categorie </a>
+                <?php
    require_once("functions.php");
    $categories=getAllCategories();
    foreach($categories as $cat){
     ?>
-					<a href="" class="list-group-item"><?=$cat->titre ?></a>    
+					<a href='gestion.php?id=<?=$cat->id ?>' class="list-group-item"><?=$cat->titre ?></a>    
 <?php
    }
   ?>                
 
-				</div>
+
+            </div>
 			</div>
 			
 			
