@@ -25,4 +25,15 @@ function getAllCategories(){
 }
 return $tab;
 }
-
+function getLivreByCat(){
+  $db=getConnexion();
+  $rep=$db->prepare("select * from livre where id_cat=?");
+  $req->bindParam(1,$id_cat);
+  $rep->execute();
+  $rep->setFetchMode(PDO::FETCH_OBJ);
+  $tab=array();
+  while($ligne=$rep->fetch()){
+    $tab[]=$ligne;
+}
+return $tab;
+}
