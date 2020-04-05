@@ -1,3 +1,12 @@
+<?php
+require_once("functions.php");
+$categories=null;
+if(isset($_GET["id"])){
+$livres=getLivreByCat($_GET["id"]);
+}else{
+$livres=getAllLivres();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,12 +48,12 @@
 				<div class="list-group">
                 <a href="#" class="list-group-item active"> Categorie </a>
                 <?php
-   require_once("functions.php");
+  
    $categories=getAllCategories();
    foreach($categories as $cat){
-    ?>
-					<a href='gestion.php?id=<?=$cat->id ?>' class="list-group-item"><?=$cat->titre ?></a>    
-<?php
+    {
+		echo "<a href='gestion.php?id={$cat->id}' class="list-group-item">{$cat->titre}</a> ";   
+
    }
   ?>                
 
@@ -64,8 +73,7 @@
                 <tbody>                
                
    <?php
-   require_once("functions.php");
-   $livres=getAllLivres();
+  
    foreach($livres as $liv){
     ?>
     <tr> <td><img src="images/<?=$liv->id ?>.png" width="80%" ></td>
