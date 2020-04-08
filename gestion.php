@@ -1,10 +1,12 @@
 <?php
 require_once("functions.php");
-$categories=null;
+$categorie=null;
 if(isset($_GET["id"])){
-$livres=getLivreByCat($_GET["id"]);
+    $livre=getLivreById($_GET["id"]);
+}elseif(isset($_GET["mot"])){
+    $livre=Recherche($_GET["mot"]);
 }else{
-$livres=getAllLivres();
+    $livre= getAllLivre();
 }
 ?>
 <!DOCTYPE html>
@@ -27,7 +29,7 @@ $livres=getAllLivres();
                 <li class="active"><a href="">Home</a></li>
 
             </ul>
-			<form class="navbar-form navbar-left" method="get" action="" >
+			<form class="navbar-form navbar-left" method="get"  >
 				<div class="form-group">
 					<input type="text" name="mot" class="form-control" placeholder="Search">
 				</div>
@@ -46,19 +48,18 @@ $livres=getAllLivres();
        <div class="col-md-3">
 			<div class="row">
 				<div class="list-group">
-                <a href="#" class="list-group-item active"> Categorie </a>
-                <?php
-  
-   $categories=getAllCategories();
-   foreach($categories as $cat){
-    {
-		echo "<a href='gestion.php?id={$cat->id}' class="list-group-item">{$cat->titre}</a> ";   
+					<a href="gestion.php" class="list-group-item active">Categorie</a>
+                    <?php
+                    $categorie=getAllCategorie();
+                    foreach( $categorie as $value)
 
-   }
-  ?>                
-
-
-            </div>
+                     {
+                        echo "<a href='gestion.php?id={$value->id}' class='list-group-item'>{$value->titre}</a>"; 
+                     }       
+                       ?>
+                   
+                     
+				</div>
 			</div>
 			
 			
@@ -70,20 +71,24 @@ $livres=getAllLivres();
                 <thead>
                 <tr><th style="width:90px">#</th><th>Titre</th><th>Auteurs</th><th>Exemplaires</th></tr>
                 </thead>
-                <tbody>                
-               
-   <?php
-  
-   foreach($livres as $liv){
-    ?>
-    <tr> <td><img src="images/<?=$liv->id ?>.png" width="80%" ></td>
-         <td><?=$liv->titre ?></td>
-         <td><?=$liv->auteurs ?></td>
-         <td><?=$liv->nbre_exemplaires ?></td>
-    </tr>
-  <?php
-   }
-  ?>           
+                <tbody> 
+                <?php
+                    
+                    foreach( $livre as $value)
+
+                     {
+
+                       ?>
+                               
+                    <tr>
+                        <td> <img src="images/<?=$value->id ?>.png" width="80%" >    </td>
+                        <td><?=$value->titre ?></td>
+                        <td><?=$value->auteurs ?></td>
+                        <td><?=$value->nbre_exemplaires ?></td>
+                    </tr>
+                    <?php
+                     }
+                     ?>                   
                 </tbody>
             </table>
 
