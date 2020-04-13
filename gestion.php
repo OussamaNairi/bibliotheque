@@ -2,11 +2,11 @@
 require_once("functions.php");
 $categorie=null;
 if(isset($_GET["id"])){
-    $livre=getLivreById($_GET["id"]);
+    $livre=getLivreByCat($_GET["id"]);
 }elseif(isset($_GET["mot"])){
     $livre=Recherche($_GET["mot"]);
 }else{
-    $livre= getAllLivre();
+    $livre= getAllLivres();
 }
 ?>
 <!DOCTYPE html>
@@ -50,7 +50,7 @@ if(isset($_GET["id"])){
 				<div class="list-group">
 					<a href="gestion.php" class="list-group-item active">Categorie</a>
                     <?php
-                    $categorie=getAllCategorie();
+                    $categorie=getAllCategories();
                     foreach( $categorie as $value)
 
                      {
