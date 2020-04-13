@@ -43,7 +43,7 @@ function getLivreByCat($id_cat){
     }
     return $tab;
 }
-function Recherche($id){
+function getByMotCle($id){
     $db=getConnexion();
 	$req=$db->prepare("SELECT * FROM `livre` WHERE titre LIKE  ? ");
     $req->bindParam(1,$id);

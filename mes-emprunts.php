@@ -26,8 +26,8 @@ if(isset($_GET["id"])){
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="">Home</a></li>
-                <li ><a href="mes-emprunts.php">Me emprunts</a></li>
+                <li ><a href="">Home</a></li>
+                <li class="active"><a href="">Me emprunts</a></li>
 
             </ul>
 			<form class="navbar-form navbar-left" method="get"  >
