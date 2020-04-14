@@ -56,3 +56,30 @@ function getByMotCle($id){
     }
     return $tab;
 }
+function getLivreByIdEmprunt($id_emprunt){
+    $db=getConnexion();
+    $req=$db->prepare("select id_livre from emprunt where id=?");
+    $req->bindParam(1,$id_emprunt);
+    $req->execute();
+    $req->setFetchMode(PDO::FETCH_OBJ);
+    $tab=array();
+    while($ligne=$req->fetch())
+    {
+    $tab[]=$ligne;
+    }
+    return $tab;
+}
+function getMesEmprunts($id){
+    $db=getConnexion();
+    $req=$db->prepare("select* from emprunt where id_etd=:var1 and etat_emprunt=1");
+    $req->bindParam(":var1",$_SESSION["iduser"]);
+ 
+    $req->execute();
+    $req->setFetchMode(PDO::FETCH_OBJ);
+    $tab=array();
+    while($ligne=$req->fetch())
+    {
+    $tab[]=$ligne;
+    }
+    return $tab;
+}

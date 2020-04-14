@@ -31,13 +31,16 @@ session_start();
                 </form>
             </div>
 <?php
-                      if(isset($_SESSION["erreur"])){
-                      echo"<div class='alert alert-{$_SESSION["type_erreur"]}'>";
-                      echo $_SESSION["erreur"];
-                      echo"</div>";
-                      unset($_SESSION["erreur"]);
-                      }
-                    ?>
+
+            if(isset($_SESSION["erreur"])){
+
+                echo "<div class='alert alert-{$_SESSION["type_erreur"]}'>";
+                echo $_SESSION["erreur"];
+                echo "</div>";
+                unset($_SESSION["erreur"]);
+                unset($_SESSION["user"]);
+            }
+            ?>
            
         </div>
 

@@ -1,10 +1,20 @@
 <?php
+   session_start();
 require_once("functions.php");
+if(!isset($_SESSION["user"])){
+    header("location:connexion.php");
+
+}
 $categorie=null;
 if(isset($_GET["id"])){
     $livre=getLivreByCat($_GET["id"]);
 }elseif(isset($_GET["mot"])){
-    $livre=getByMotCle($_GET["mot"]);
+    $livre=Recherche($_GET["mot"]);
+
+}
+elseif(isset($_GET["emprunt"])){
+    $emprunt=getMesEmprunts($_GET["emprunt"]);
+    
 }else{
     $livre= getAllLivres();
 }
@@ -27,7 +37,7 @@ if(isset($_GET["id"])){
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li ><a href="">Home</a></li>
-                <li class="active"><a href="">Me emprunts</a></li>
+                <li class="active"><a href="mes-emprunts.php?emprunt=<?=$_SESSION["iduser"]?>">Me emprunts</a></li>
 
             </ul>
 			<form class="navbar-form navbar-left" method="get"  >

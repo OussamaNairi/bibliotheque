@@ -1,5 +1,10 @@
 <?php
+session_start();
 require_once("functions.php");
+if(!isset($_SESSION["user"])){
+    header("location:connexion.php");
+
+}
 $categorie=null;
 if(isset($_GET["id"])){
     $livre=getLivreByCat($_GET["id"]);
@@ -26,8 +31,8 @@ if(isset($_GET["id"])){
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="">Home</a></li>
-                <li ><a href="mes-emprunts.php">Me emprunts</a></li>
+                <li ><a href="">Home</a></li>
+                 <li class="active"><a href="mes-emprunts.php?emprunt=<?=$_SESSION["iduser"]?>">Me emprunts</a></li>
 
             </ul>
 			<form class="navbar-form navbar-left" method="get"  >
@@ -36,6 +41,8 @@ if(isset($_GET["id"])){
 				</div>
 				<button type="submit" class="btn btn-default">Chercher</button>
 			</form>
+            <div class="nav navbar-nav navbar-right">          
+            <a  class="navbar-brand" href=""><?=$_SESSION["user"]?></a><a  class="navbar-brand" href="dec.php">(Deconnexion)</a>
 
         </div>
     </div>
@@ -86,6 +93,7 @@ if(isset($_GET["id"])){
                         <td><?=$value->titre ?></td>
                         <td><?=$value->auteurs ?></td>
                         <td><?=$value->nbre_exemplaires ?></td>
+                       
                         <td><button class="btn btn-info">Emprunter</button></td>
                     </tr>
                     <?php
